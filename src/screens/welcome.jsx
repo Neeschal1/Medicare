@@ -45,7 +45,7 @@ const Welcome = () => {
                 <Image className="h-10 w-10" source={logo} />
                 <Text className="max-w-[220px] text-primarypurple text-3xl font-Quicksandbold">
                   MediCare
-                </Text>
+                </Text> 
               </Animated.View>
               <Animated.Text entering={FadeInUp.delay(400).duration(1000).springify()} className="text-gray-500 font-Quicksandmedium text-center text-sm mt-2 mx-3.5">
                 Create an account in minutes to access exclusive features, track

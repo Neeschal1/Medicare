@@ -11,6 +11,7 @@ import Animated, {
   FadeInDown,
 } from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
+import Assignments from '../components/home/assignments'
 import { ScrollView, TextInput } from "react-native-gesture-handler";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -114,60 +115,6 @@ const Home = () => {
             </View>
           </View>
 
-          {/* <View>
-            <ScrollView className="mt-10">
-              <View className="flex-row gap-8">
-                <Animated.View
-                  style={{ backgroundColor: "#f3f5f4" }}
-                  className="flex-col items-center justify-start p-2 rounded-lg"
-                >
-                  <Image
-                    source={require("../assets/images/doctoricon.jpg")}
-                    className="h-16 w-16 mb-2 rounded-full"
-                  />
-                  <Text className="text-base font-Quicksandmedium text-black">
-                    Doctor
-                  </Text>
-                </Animated.View>
-                <Animated.View
-                  style={{ backgroundColor: "#ffffff" }}
-                  className="flex-col items-center justify-start p-2 rounded-lg"
-                >
-                  <Image
-                    source={require("../assets/images/hospitalicon.jpg")}
-                    className="h-12 w-12 mb-2 rounded-full"
-                  />
-                  <Text className="text-base font-Quicksandmedium text-black">
-                    Hospital
-                  </Text>
-                </Animated.View>
-                <Animated.View
-                  style={{ backgroundColor: "#f3f5f4" }}
-                  className="flex-col items-center justify-start p-2 rounded-lg"
-                >
-                  <Image
-                    source={require("../assets/images/doctoricon.jpg")}
-                    className="h-16 w-16 mb-2 rounded-full"
-                  />
-                  <Text className="text-base font-Quicksandmedium text-black">
-                    Doctor
-                  </Text>
-                </Animated.View>
-                <Animated.View
-                  style={{ backgroundColor: "#f3f5f4" }}
-                  className="flex-col items-center justify-start p-2 rounded-lg"
-                >
-                  <Image
-                    source={require("../assets/images/doctoricon.jpg")}
-                    className="h-16 w-16 mb-2 rounded-full"
-                  />
-                  <Text className="text-base font-Quicksandmedium text-black">
-                    Doctor
-                  </Text>
-                </Animated.View>
-              </View>
-            </ScrollView>
-          </View> */}
 
           {/* Main Content */}
           <Animated.View entering={FadeInUp.delay(1000).duration(800).springify()} className="">
@@ -183,48 +130,7 @@ const Home = () => {
                 </TouchableOpacity>
               </View>
             </View>
-            <View className="h-100 w-25 bg-blue-500 flex-row rounded-3xl mt-3">
-              <View className="p-5">
-                <View>
-                  <Text className="font-Quicksandbold text-tertiarywhite text-3xl">
-                    Dr. Dianne Russel
-                  </Text>
-                  <Text className="font-Quicksandmedium text-tertiarywhite text-xl">
-                    Neurology Specialist
-                  </Text>
-                </View>
-                <View>
-                  <Text className="font-Quicksandregular text-white pt-3 text-s">
-                    Dr. Dianne Russel is a {"\n"}neurology specialist. She
-                    received{"\n"}her Doctor of Neurology Surg...
-                  </Text>
-                  <View className=" py-3 items-center rounded mt-3 mr-20">
-                    <Text className="font-Quicksandregular text-white">
-                      Starts in: 30 minutes
-                    </Text>
-                  </View>
-                </View>
-                <View>
-                  <TouchableOpacity className="flex-row gap-3 items-center bg-primarypurple py-3 px-3 rounded mr-20">
-                    <Ionicons name="videocam" size={30} color={"#F2F1FF"} />
-                    <Text className="text-tertiarywhite font-Quicksandmedium">
-                      Join the Call
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View>
-                <Image
-                  style={{
-                    height: 250,
-                    width: 200,
-                    marginLeft: -60,
-                    marginTop: 11,
-                  }}
-                  source={doctor}
-                />
-              </View>
-            </View>
+            <Assignments />
           </Animated.View>
         </View>
       </Animated.View>
