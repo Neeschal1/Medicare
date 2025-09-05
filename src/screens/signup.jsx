@@ -102,7 +102,7 @@ const Signup = () => {
       }
 
       if (response.ok) {
-        navigation.replace("Idcreated"); 
+        navigation.replace("Idcreated");
       } else {
         setEmailError(true);
         setPasswordError(true);
@@ -125,12 +125,15 @@ const Signup = () => {
       <ScrollView
         contentContainerStyle={{ flexGrow: 1 }}
         keyboardShouldPersistTaps="handled"
-         style={{borderTopLeftRadius: 20}}
+        style={{ borderTopLeftRadius: 20 }}
       >
         <StatusBar hidden={true} />
 
         <View className="flex-1 bg-tertiarywhite w-full h-[70%] rounded-3xl items-center justify-center gap-5 mt-120 pt-8">
-          <View  style={{borderTopLeftRadius: 20}} className="w-full items-center justify-center gap-8 mt-10">
+          <View
+            style={{ borderTopLeftRadius: 20 }}
+            className="w-full items-center justify-center gap-8 mt-10"
+          >
             {/* Logo & Title */}
             <Animated.View
               entering={FadeInUp.delay(200).duration(1000).springify()}
@@ -147,90 +150,128 @@ const Signup = () => {
             </Animated.View>
 
             {/* Full Name Input */}
-            <Animated.View
-              entering={FadeInUp.delay(400).duration(1000).springify()}
-              className="w-full ml-10 gap-2"
-            >
-              <Text className="text-black-[18px] font-Quicksandsemibold">
-                Full Name:
-              </Text>
-              <TextInput
-                value={fullName}
-                onChangeText={setFullName}
-                placeholder="Enter your Full Name:"
-                className="h-18 w-full max-w-[90%] rounded-2xl py-4 border font-Quicksandmedium pl-5"
-                style={{
-                  borderColor: fullName ? "#7C3AED" : "#ccc",
-                }}
-              />
-            </Animated.View>
-
-            {/* Email Input */}
-            <Animated.View
-              entering={FadeInUp.delay(600).duration(1000).springify()}
-              className="w-full ml-10 gap-2"
-            >
-              <Text className="text-black-[18px] font-Quicksandsemibold">
-                Email:
-              </Text>
-              <TextInput
-                value={email}
-                onChangeText={(text) => {
-                  setEmail(text);
-                  setEmailError(false);
-                }}
-                keyboardType="email-address"
-                placeholder="Enter your Email:"
-                className="h-18 w-full max-w-[90%] rounded-2xl py-4 border font-Quicksandmedium pl-5"
-                style={{
-                  borderColor: emailError
-                    ? "red"
-                    : email
-                    ? "#7C3AED"
-                    : "#ccc",
-                }}
-              />
-            </Animated.View>
-
-            {/* Password Input */}
-            <Animated.View
-              entering={FadeInUp.delay(800).duration(1000).springify()}
-              className="w-full ml-10 gap-2 relative items-start"
-            >
-              <Text className="text-black-[18px] font-Quicksandsemibold">
-                Password:
-              </Text>
-              <View className="w-full max-w-[90%]">
+            <View className="flex-1 w-full items-center gap-4">
+              <Animated.View
+                entering={FadeInUp.delay(400).duration(1000).springify()}
+                className="w-full ml-10 gap-2"
+              >
+                <Text className="text-black-[18px] font-Quicksandsemibold">
+                  Full Name:
+                </Text>
                 <TextInput
-                  value={password}
-                  onChangeText={(text) => {
-                    setPassword(text);
-                    setPasswordError(false);
-                  }}
-                  placeholder="Set up a new password:"
-                  secureTextEntry={!showPassword}
-                  className="h-18 w-full rounded-2xl py-4 border font-Quicksandmedium pl-5 pr-12"
+                  value={fullName}
+                  onChangeText={setFullName}
+                  placeholder="Enter your Full Name:"
+                  className="h-18 w-full max-w-[90%] rounded-2xl py-4 border font-Quicksandmedium pl-5"
                   style={{
-                    borderColor: passwordError
-                      ? "red"
-                      : password
-                      ? "#7C3AED"
-                      : "#ccc",
+                    borderColor: fullName ? "#7C3AED" : "#ccc",
                   }}
                 />
-                <TouchableOpacity
-                  className="absolute right-4 top-1/2 -translate-y-1/2"
-                  onPress={() => setShowPassword(!showPassword)}
-                >
-                  <Ionicons
-                    name={showPassword ? "eye-off" : "eye"}
-                    size={24}
-                    color="gray"
-                  />
-                </TouchableOpacity>
-              </View>
-            </Animated.View>
+              </Animated.View>
 
+              {/* Email Input */}
+              <Animated.View
+                entering={FadeInUp.delay(600).duration(1000).springify()}
+                className="w-full ml-10 gap-2"
+              >
+                <Text className="text-black-[18px] font-Quicksandsemibold">
+                  Email:
+                </Text>
+                <TextInput
+                  value={email}
+                  onChangeText={(text) => {
+                    setEmail(text);
+                    setEmailError(false);
+                  }}
+                  keyboardType="email-address"
+                  placeholder="Enter your Email:"
+                  className="h-18 w-full max-w-[90%] rounded-2xl py-4 border font-Quicksandmedium pl-5"
+                  style={{
+                    borderColor: emailError
+                      ? "red"
+                      : email
+                        ? "#7C3AED"
+                        : "#ccc",
+                  }}
+                />
+              </Animated.View>
+
+              {/* Password Input */}
+              <Animated.View
+                entering={FadeInUp.delay(800).duration(1000).springify()}
+                className="w-full ml-10 gap-2 relative items-start"
+              >
+                <Text className="text-black-[18px] font-Quicksandsemibold">
+                  Password:
+                </Text>
+                <View className="w-full max-w-[90%]">
+                  <TextInput
+                    value={password}
+                    onChangeText={(text) => {
+                      setPassword(text);
+                      setPasswordError(false);
+                    }}
+                    placeholder="Set up a new password:"
+                    secureTextEntry={!showPassword}
+                    className="h-18 w-full rounded-2xl py-4 border font-Quicksandmedium pl-5 pr-12"
+                    style={{
+                      borderColor: passwordError
+                        ? "red"
+                        : password
+                          ? "#7C3AED"
+                          : "#ccc",
+                    }}
+                  />
+                  <TouchableOpacity
+                    className="absolute right-4 top-1/2 -translate-y-1/2"
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
+                    <Ionicons
+                      name={showPassword ? "eye-off" : "eye"}
+                      size={24}
+                      color="gray"
+                    />
+                  </TouchableOpacity>
+                </View>
+              </Animated.View>
+              <Animated.View
+                entering={FadeInUp.delay(800).duration(1000).springify()}
+                className="w-full ml-10 gap-2 relative items-start"
+              >
+                <Text className="text-black-[18px] font-Quicksandsemibold">
+                  Confirm Password:
+                </Text>
+                <View className="w-full max-w-[90%]">
+                  <TextInput
+                    // value={password}
+                    // onChangeText={(text) => {
+                    //   setPassword(text);
+                    //   setPasswordError(false);
+                    // }}
+                    placeholder="Confirm your new password:"
+                    secureTextEntry={!showPassword}
+                    className="h-18 w-full rounded-2xl py-4 border font-Quicksandmedium pl-5 pr-12"
+                    style={{
+                      borderColor: passwordError
+                        ? "red"
+                        : password
+                          ? "#7C3AED"
+                          : "#ccc",
+                    }}
+                  />
+                  <TouchableOpacity
+                    className="absolute right-4 top-1/2 -translate-y-1/2"
+                    onPress={() => setShowPassword(!showPassword)}
+                  >
+                    <Ionicons
+                      name={showPassword ? "eye-off" : "eye"}
+                      size={24}
+                      color="gray"
+                    />
+                  </TouchableOpacity>
+                </View>
+              </Animated.View>
+            </View>
             {/* Signup Button */}
             <Animated.View
               entering={FadeInUp.delay(1000).duration(1000).springify()}

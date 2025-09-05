@@ -48,3 +48,23 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+{
+"image": "./assets/images/splash-icon.png",
+"imageWidth": 200,
+"resizeMode": "contain",
+"backgroundColor": "#8467C5"
+}
+
+"android": {
+"adaptiveIcon": {
+"foregroundImage": "./assets/images/adaptive-icon.png",
+"backgroundColor": "#8467C5"
+},
+"edgeToEdgeEnabled": true
+},
+"web": {
+"bundler": "metro",
+"output": "static",
+"favicon": "./assets/images/favicon.png"
+},

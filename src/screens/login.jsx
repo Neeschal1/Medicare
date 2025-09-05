@@ -26,7 +26,7 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
-  BounceIn
+  BounceIn,
 } from "react-native-reanimated";
 
 const loginbg = require("../assets/images/loginbg.png");
@@ -106,7 +106,11 @@ const Login = () => {
 
       if (response.ok && data.access_token) {
         await AsyncStorage.setItem("userToken", data.access_token);
-        navigation.replace("Home");
+
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "HomeDrawer" }],
+        });
       } else {
         setEmailError(true);
         setPasswordError(true);
@@ -125,7 +129,7 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -142,7 +146,10 @@ const Login = () => {
               resizeMode="cover"
             >
               {loginError && (
-                <Animated.View entering={BounceIn.delay(200).duration(600)} className="bg-red-500 p-3 rounded-lg w-11/12 items-center">
+                <Animated.View
+                  entering={BounceIn.delay(200).duration(600)}
+                  className="bg-red-500 p-3 rounded-lg w-11/12 items-center"
+                >
                   <Text className="text-white font-bold">
                     Invalid credentials!
                   </Text>
@@ -158,9 +165,9 @@ const Login = () => {
               scrollEnabled={true}
               showsVerticalScrollIndicator={false}
               className="mt-[-40] pb-10 bg-tertiarywhite"
+              style={{borderTopLeftRadius: 20, borderTopRightRadius: 20}}
             >
               <View
-                style={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
                 className="flex-1 bg-tertiarywhite py-10 items-center justify-center"
               >
                 <View className="w-11/12 items-center space-y-5 gap-5 ">
@@ -290,7 +297,12 @@ const Login = () => {
 
                   {/* Social Buttons */}
                   <View className="w-full items-center space-y-4 gap-3">
-                    <Animated.View className={"w-full"} entering={FadeInDown.delay(400).duration(1000).springify()}>
+                    <Animated.View
+                      className={"w-full"}
+                      entering={FadeInDown.delay(400)
+                        .duration(1000)
+                        .springify()}
+                    >
                       <TouchableOpacity className="w-full rounded-xl py-3 bg-black items-center">
                         <View className="flex-row items-center space-x-4 gap-3">
                           <Image source={apple} />
@@ -300,7 +312,12 @@ const Login = () => {
                         </View>
                       </TouchableOpacity>
                     </Animated.View>
-                    <Animated.View className={"w-full"} entering={FadeInDown.delay(600).duration(1000).springify()}>
+                    <Animated.View
+                      className={"w-full"}
+                      entering={FadeInDown.delay(600)
+                        .duration(1000)
+                        .springify()}
+                    >
                       <TouchableOpacity className="w-full rounded-xl py-3 border border-gray-300 items-center">
                         <View className="flex-row items-center space-x-4 gap-3">
                           <Image source={google} />
@@ -331,7 +348,7 @@ const Login = () => {
           </View>
         </Animated.View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    
   );
 };
 
