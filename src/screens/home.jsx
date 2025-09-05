@@ -1,10 +1,23 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
 import { useDrawerProgress } from "@react-navigation/drawer";
-import Animated, { interpolate, useAnimatedStyle } from "react-native-reanimated";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  FadeIn,
+  FadeOut,
+  FadeInUp,
+  FadeInDown,
+} from "react-native-reanimated";
+import { Ionicons } from "@expo/vector-icons";
+import { ScrollView, TextInput } from "react-native-gesture-handler";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
+
+const Screenwidth = Dimensions.get("window").width;
+
+const doctor = require("../assets/images/doctorimage.png");
 
 const Home = () => {
   const navigation = useNavigation();
@@ -14,7 +27,11 @@ const Home = () => {
     if (!progress) return {};
 
     const scale = interpolate(progress.value, [0, 1], [1, 0.85]);
-    const translateX = interpolate(progress.value, [0, 1], [0, SCREEN_WIDTH * 0.95]);
+    const translateX = interpolate(
+      progress.value,
+      [0, 1],
+      [0, SCREEN_WIDTH * 0.95]
+    );
     const borderRadius = interpolate(progress.value, [0, 1], [0, 20]);
 
     return {
@@ -25,38 +42,194 @@ const Home = () => {
   });
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#1f2937" }}>
-      <Animated.View style={[{ flex: 1, backgroundColor: "#fff" }, animatedStyle]}>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
-              <Image
-                style={styles.avatar}
-                source={{ uri: "https://i.pinimg.com/736x/aa/5d/c6/aa5dc6ee57c1ddbc7979a3de662f1f38.jpg" }}
-              />
-            </TouchableOpacity>
-            <View style={{ justifyContent: "center" }}>
-              <Text style={styles.greeting}>Hi, Neeschal!</Text>
-              <Text style={styles.subGreeting}>So good to see you.</Text>
+    <ScrollView className="flex-1 bg-tertiarywhite">
+      <Animated.View style={animatedStyle} className="flex-1 bg-tertiarywhite">
+        {/* Container */}
+        <View className="flex-1 pt-16 px-5 w-full">
+          {/* Header */}
+          <View className="flex-row items-center space-x-3 gap-3 justify-between">
+            <Animated.View
+              entering={FadeInUp.delay(200).duration(1000).springify()}
+              className="flex-row gap-3"
+            >
+              {" "}
+              <TouchableOpacity
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+              >
+                <Image
+                  source={{
+                    uri: "https://i.pinimg.com/736x/aa/5d/c6/aa5dc6ee57c1ddbc7979a3de662f1f38.jpg",
+                  }}
+                  style={{ height: 50, width: 50, borderRadius: 30 }}
+                />
+              </TouchableOpacity>
+              <View className="justify-center">
+                <Text className="text-2xl font-Quicksandbold text-black">
+                  Hi, Neeschal!
+                </Text>
+                <Text className="text-lg text-gray-600 font-Quicksandmedium">
+                  So good to see you.
+                </Text>
+              </View>
+            </Animated.View>
+            <Animated.View
+              entering={FadeInUp.delay(1000).duration(400).springify()}
+            >
+              <TouchableOpacity className="h-14 w-14 justify-center items-center bg-blue-300 rounded-3xl px-3">
+                <Ionicons name="search" size={24} color={"#fdfdfd"} />
+              </TouchableOpacity>
+            </Animated.View>
+          </View>
+
+          <View className="mt-10 relative w-full">
+            <Animated.View
+              entering={FadeInUp.duration(1000).delay(600).springify()}
+            >
+              <Text className="text-2xl font-Quicksandsemibold mb-5">
+                Find your Perfect Medicare!
+              </Text>
+            </Animated.View>
+
+            {/* Buttons */}
+            <View className="flex-row w-full space-x-4 gap-5">
+              {/* Emergency Button */}
+              <Animated.View entering={FadeInUp.delay(600).duration(1000).springify()} className="flex-1">
+                <TouchableOpacity className="w-full flex-row items-center justify-center gap-3 py-3 rounded-xl bg-red-500">
+                  <Ionicons name="alert" size={24} color="#fff" />
+                  <Text className="text-white font-Quicksandmedium text-base">
+                    Emergency
+                  </Text>
+                </TouchableOpacity>
+              </Animated.View>
+
+              {/* Appointment Button */}
+              <Animated.View entering={FadeInUp.delay(800).duration(1000).springify()} className="flex-1">
+                <TouchableOpacity className="w-full flex-row items-center justify-center gap-3 py-3 rounded-xl bg-blue-500">
+                  <Ionicons name="briefcase" size={24} color="#fff" />
+                  <Text className="text-white font-Quicksandmedium text-base">
+                    Appointment
+                  </Text>
+                </TouchableOpacity>
+              </Animated.View>
             </View>
           </View>
 
-          <View style={{ marginTop: 40 }}>
-            <Text style={styles.contentText}>Your main content goes here...</Text>
-          </View>
+          {/* <View>
+            <ScrollView className="mt-10">
+              <View className="flex-row gap-8">
+                <Animated.View
+                  style={{ backgroundColor: "#f3f5f4" }}
+                  className="flex-col items-center justify-start p-2 rounded-lg"
+                >
+                  <Image
+                    source={require("../assets/images/doctoricon.jpg")}
+                    className="h-16 w-16 mb-2 rounded-full"
+                  />
+                  <Text className="text-base font-Quicksandmedium text-black">
+                    Doctor
+                  </Text>
+                </Animated.View>
+                <Animated.View
+                  style={{ backgroundColor: "#ffffff" }}
+                  className="flex-col items-center justify-start p-2 rounded-lg"
+                >
+                  <Image
+                    source={require("../assets/images/hospitalicon.jpg")}
+                    className="h-12 w-12 mb-2 rounded-full"
+                  />
+                  <Text className="text-base font-Quicksandmedium text-black">
+                    Hospital
+                  </Text>
+                </Animated.View>
+                <Animated.View
+                  style={{ backgroundColor: "#f3f5f4" }}
+                  className="flex-col items-center justify-start p-2 rounded-lg"
+                >
+                  <Image
+                    source={require("../assets/images/doctoricon.jpg")}
+                    className="h-16 w-16 mb-2 rounded-full"
+                  />
+                  <Text className="text-base font-Quicksandmedium text-black">
+                    Doctor
+                  </Text>
+                </Animated.View>
+                <Animated.View
+                  style={{ backgroundColor: "#f3f5f4" }}
+                  className="flex-col items-center justify-start p-2 rounded-lg"
+                >
+                  <Image
+                    source={require("../assets/images/doctoricon.jpg")}
+                    className="h-16 w-16 mb-2 rounded-full"
+                  />
+                  <Text className="text-base font-Quicksandmedium text-black">
+                    Doctor
+                  </Text>
+                </Animated.View>
+              </View>
+            </ScrollView>
+          </View> */}
+
+          {/* Main Content */}
+          <Animated.View entering={FadeInUp.delay(1000).duration(800).springify()} className="">
+            <View className="mt-10 flex-row justify-between items-center">
+              <View className="flex-1 flex-row justify-between items-center">
+                <Text className="font-Quicksandsemibold text-xl">
+                  Upcoming Appointment
+                </Text>
+                <TouchableOpacity>
+                  <Text className="font-Quicksandmedium text-l text-grey">
+                    See All
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            <View className="h-100 w-25 bg-blue-500 flex-row rounded-3xl mt-3">
+              <View className="p-5">
+                <View>
+                  <Text className="font-Quicksandbold text-tertiarywhite text-3xl">
+                    Dr. Dianne Russel
+                  </Text>
+                  <Text className="font-Quicksandmedium text-tertiarywhite text-xl">
+                    Neurology Specialist
+                  </Text>
+                </View>
+                <View>
+                  <Text className="font-Quicksandregular text-white pt-3 text-s">
+                    Dr. Dianne Russel is a {"\n"}neurology specialist. She
+                    received{"\n"}her Doctor of Neurology Surg...
+                  </Text>
+                  <View className=" py-3 items-center rounded mt-3 mr-20">
+                    <Text className="font-Quicksandregular text-white">
+                      Starts in: 30 minutes
+                    </Text>
+                  </View>
+                </View>
+                <View>
+                  <TouchableOpacity className="flex-row gap-3 items-center bg-primarypurple py-3 px-3 rounded mr-20">
+                    <Ionicons name="videocam" size={30} color={"#F2F1FF"} />
+                    <Text className="text-tertiarywhite font-Quicksandmedium">
+                      Join the Call
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+              <View>
+                <Image
+                  style={{
+                    height: 250,
+                    width: 200,
+                    marginLeft: -60,
+                    marginTop: 11,
+                  }}
+                  source={doctor}
+                />
+              </View>
+            </View>
+          </Animated.View>
         </View>
       </Animated.View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 60, paddingHorizontal: 20 },
-  header: { flexDirection: "row", alignItems: "center", gap: 12 },
-  avatar: { width: 60, height: 60, borderRadius: 30 },
-  greeting: { fontSize: 24, fontWeight: "700", color: "#000" },
-  subGreeting: { fontSize: 18, color: "#555" },
-  contentText: { fontSize: 16, color: "#333" },
-});

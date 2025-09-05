@@ -6,7 +6,7 @@ import Signup from "../screens/signup";
 import Doctorwelcome from "../screens/doctorwelcome";
 import Idcreated from "../screens/idcreated";
 import Profilesetup from "../screens/profilesetup";
-import DrawerNavigation from "./drawernavigation";
+import DrawerNavigation from "./DrawerNavigation";
 
 const Stack = createNativeStackNavigator();
 
