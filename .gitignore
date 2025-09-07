@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+#files
+/src/api/apikey.jsx
+
 # Expo
 .expo/
 dist/
