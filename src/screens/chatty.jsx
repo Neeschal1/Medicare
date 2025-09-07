@@ -1,24 +1,27 @@
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-} from "react-native";
+import { Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
+import Animated, {
+  FadeInUp,
+  FadeInDown,
+  FadeInRight,
+  FadeInLeft,
+} from "react-native-reanimated";
 
 const { width } = Dimensions.get("window");
 const Robo = require("../assets/images/chattyrobo.png");
 
 const Chatty = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   return (
     <View className="flex-1 justify-start mt-20 items-center bg-tertiarywhite px-4">
       <Text className="font-Quicksandbold text-3xl pb-5">Chatty</Text>
       {/* Premium Plan Card */}
-      <View className="w-full rounded-3xl bg-blue-500 p-5 flex-row justify-between items-center">
+      <Animated.View
+        entering={FadeInUp.delay(200).duration(1000).springify()}
+        className="w-full rounded-3xl bg-blue-500 p-5 flex-row justify-between items-center"
+      >
         {/* Left side (Texts + Button) */}
         <View className="flex-1 mr-3">
           <Text className="font-Quicksandbold text-2xl md:text-4xl text-tertiarywhite">
@@ -45,37 +48,75 @@ const Chatty = () => {
             resizeMode: "contain",
           }}
         />
-      </View>
+      </Animated.View>
 
       {/* Feature Options */}
       <View className="flex-row flex-wrap justify-between w-full mt-6 gap-4">
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
-          <Ionicons name="medkit" size={32} color="#1E3A8A" />
-          <Text className="font-Quicksandmedium text-center text-sm mt-2">
-            Generate Home Remedy {"\n"}Treatment
-          </Text>
-        </TouchableOpacity>
+        <Animated.View
+          entering={FadeInLeft.delay(400).duration(1000).springify()}
+          className="w-[48%]"
+        >
+          <TouchableOpacity
+            className=" aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10"
+            onPress={() => {
+              navigation.navigate("Chatbot");
+            }}
+          >
+            <Ionicons name="medkit" size={32} color="#1E3A8A" />
+            <Text className="font-Quicksandmedium text-center text-sm mt-2">
+              Generate Home Remedy {"\n"}Treatment
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
+        <Animated.View
+          entering={FadeInRight.delay(400).duration(1000).springify()}
+          className="w-[48%]"
+        >
+          <TouchableOpacity
+            className="aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10"
+            onPress={() => {
+              navigation.navigate("Chatbot");
+            }}
+          >
+            <Ionicons name="fitness" size={32} color="#1E3A8A" />
+            <Text className="font-Quicksandmedium text-center text-sm mt-2">
+              Personalized Fitness {"\n"}Plans
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
 
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
-          <Ionicons name="fitness" size={32} color="blue" />
-          <Text className="font-Quicksandmedium text-center text-sm mt-2">
-            Personalized Fitness {"\n"}Plans
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
-          <Ionicons name="fitness" size={32} color="#1E3A8A" />
-          <Text className="font-Quicksandmedium text-center text-sm mt-2">
-            Mental Health {"\n"}Problem
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
-          <Ionicons name="fitness" size={32} color="#1E3A8A" />
-          <Text className="font-Quicksandmedium text-center text-sm mt-2">
-            AI Diet {"\n"}Planner
-          </Text>
-        </TouchableOpacity>
+        <Animated.View
+          entering={FadeInLeft.delay(600).duration(1000).springify()}
+          className="w-[48%]"
+        >
+          <TouchableOpacity
+            className="aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10"
+            onPress={() => {
+              navigation.navigate("Chatbot");
+            }}
+          >
+            <Ionicons name="fitness" size={32} color="#1E3A8A" />
+            <Text className="font-Quicksandmedium text-center text-sm mt-2">
+              Mental Health {"\n"}Problem
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
+        <Animated.View
+          entering={FadeInRight.delay(600).duration(1000).springify()}
+          className="w-[48%]"
+        >
+          <TouchableOpacity
+            className="aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10"
+            onPress={() => {
+              navigation.navigate("Chatbot");
+            }}
+          >
+            <Ionicons name="fitness" size={32} color="#1E3A8A" />
+            <Text className="font-Quicksandmedium text-center text-sm mt-2">
+              AI Diet {"\n"}Planner
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
       </View>
     </View>
   );
