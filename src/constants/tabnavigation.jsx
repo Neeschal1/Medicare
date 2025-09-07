@@ -9,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Home from "../screens/home";
 import Hospitaldetails from "../screens/hospitaldetails";
 import Notifications from "../screens/notifications";
+import Menu from "../screens/menu";
 import Profile from "../screens/profile";
 
 const Tab = createBottomTabNavigator();
@@ -121,8 +122,8 @@ export default function MyTabs() {
 
       {/* Profile */}
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="Menu"
+        component={Menu}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center" }}>
