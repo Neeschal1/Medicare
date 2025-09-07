@@ -16,14 +16,14 @@ import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 import LottieView from "lottie-react-native";
 import Animated, { FadeInUp, FadeInDown } from "react-native-reanimated";
+import { KEY, API } from '../api/apikey'
 
 const screenheight = Dimensions.get("window").height;
 const screenwidth = Dimensions.get("window").width;
 
 const doctorrobo = require("../assets/images/doctor.json");
 
-const key = "AIzaSyBtXuBPPNVjUq2_yM_ZxZSFbXiNnf2E55U";
-const api = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
+const api = API;
 
 const homeImageUri =
   "https://i.pinimg.com/736x/aa/5d/c6/aa5dc6ee57c1ddbc7979a3de662f1f38.jpg";
