@@ -6,6 +6,7 @@ import Signup from "../screens/signup";
 import Doctorwelcome from "../screens/doctorwelcome";
 import Idcreated from "../screens/idcreated";
 import Profilesetup from "../screens/profilesetup";
+import Chatbot from "../screens/chatbot";
 import DrawerNavigation from "./DrawerNavigation";
 
 const Stack = createNativeStackNavigator();
@@ -94,6 +95,19 @@ const Stacknavigation = () => {
   component={DrawerNavigation}
   options={{ headerShown: false }}
 />
+<Stack.Screen
+        name="Chatbot"
+        component={Chatbot}
+        options={{
+          headerShown: true,
+          title: " ",
+          headerTransparent: true,
+          headerStyle: { backgroundColor: "transparent", height: 120 },
+          headerTintColor: "#000000",
+          animation: "fade",
+          headerTitleStyle: { fontSize: 24, fontWeight: "bold" },
+        }}
+      />
     </Stack.Navigator>
   );
 };

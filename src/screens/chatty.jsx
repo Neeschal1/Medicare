@@ -7,11 +7,13 @@ import {
 } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "expo-router";
 
 const { width } = Dimensions.get("window");
 const Robo = require("../assets/images/chattyrobo.png");
 
 const Chatty = () => {
+  const navigation = useNavigation()
   return (
     <View className="flex-1 justify-start mt-20 items-center bg-tertiarywhite px-4">
       <Text className="font-Quicksandbold text-3xl pb-5">Chatty</Text>
@@ -47,28 +49,28 @@ const Chatty = () => {
 
       {/* Feature Options */}
       <View className="flex-row flex-wrap justify-between w-full mt-6 gap-4">
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10">
+        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
           <Ionicons name="medkit" size={32} color="#1E3A8A" />
           <Text className="font-Quicksandmedium text-center text-sm mt-2">
             Generate Home Remedy {"\n"}Treatment
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10">
-          <Ionicons name="fitness" size={32} color="#1E3A8A" />
+        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
+          <Ionicons name="fitness" size={32} color="blue" />
           <Text className="font-Quicksandmedium text-center text-sm mt-2">
             Personalized Fitness {"\n"}Plans
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10">
+        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
           <Ionicons name="fitness" size={32} color="#1E3A8A" />
           <Text className="font-Quicksandmedium text-center text-sm mt-2">
             Mental Health {"\n"}Problem
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10">
+        <TouchableOpacity className="w-[48%] aspect-square rounded-2xl bg-blue-300 items-center justify-center pb-10" onPress={()=>{navigation.navigate("Chatbot")}}>
           <Ionicons name="fitness" size={32} color="#1E3A8A" />
           <Text className="font-Quicksandmedium text-center text-sm mt-2">
             AI Diet {"\n"}Planner
