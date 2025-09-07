@@ -71,54 +71,54 @@ const Signup = () => {
   }));
 
   const handleSignup = async () => {
-    if (!isFormValid) return;
+  if (!isFormValid) {
+    alert("Please fill all fields correctly.");
+    return;
+  }
 
-    setLoading(true);
-    setEmailError(false);
-    setPasswordError(false);
-    setSignupError(false);
+  setLoading(true);
+  setEmailError(false);
+  setPasswordError(false);
+  setSignupError(false);
 
-    try {
-      const response = await fetch(
-        "https://carezio-backend.onrender.com/users/signup",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ fullName, email, password }),
-        }
-      );
-
-      // Debugging: log raw response if it's not JSON
-      let data;
-      try {
-        data = await response.json();
-      } catch (err) {
-        console.error("Failed to parse JSON. Response may be HTML.");
-        const text = await response.text();
-        console.log("Raw response:", text);
-        setSignupError(true);
-        setLoading(false);
-        return;
+  try {
+    const response = await fetch(
+      "https://carezio-backend.onrender.com/users/", 
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fullName, email, password }),
       }
+    );
 
-      if (response.ok) {
-        navigation.replace("Idcreated");
+    if (response.ok) {
+      // Successful signup
+      navigation.replace("Idcreated");
+    } else {
+      // Handle backend errors
+      const errorData = await response.json();
+      if (errorData.detail) {
+        alert(errorData.detail); 
       } else {
-        setEmailError(true);
-        setPasswordError(true);
-        setSignupError(true);
-        setTimeout(() => setSignupError(false), 5000);
+        alert("Signup failed. Please try again.");
       }
-    } catch (error) {
-      console.error(error);
       setEmailError(true);
       setPasswordError(true);
       setSignupError(true);
       setTimeout(() => setSignupError(false), 5000);
     }
+  } catch (error) {
+    console.error(error);
+    alert("An error occurred. Please try again later.");
+    setEmailError(true);
+    setPasswordError(true);
+    setSignupError(true);
+    setTimeout(() => setSignupError(false), 5000);
+  }
 
-    setLoading(false);
-  };
+  setLoading(false);
+};
+
 
   return (
     <Animated.View style={[{ flex: 1 }, animatedStyle]}>
@@ -234,7 +234,7 @@ const Signup = () => {
                   </TouchableOpacity>
                 </View>
               </Animated.View>
-              <Animated.View
+              {/* <Animated.View
                 entering={FadeInUp.delay(800).duration(1000).springify()}
                 className="w-full ml-10 gap-2 relative items-start"
               >
@@ -270,7 +270,7 @@ const Signup = () => {
                     />
                   </TouchableOpacity>
                 </View>
-              </Animated.View>
+              </Animated.View> */}
             </View>
             {/* Signup Button */}
             <Animated.View
