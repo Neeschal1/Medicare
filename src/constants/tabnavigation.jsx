@@ -9,7 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Home from "../screens/home";
 import Hospitaldetails from "../screens/hospitaldetails";
 import Notifications from "../screens/notifications";
-import Menu from "../screens/menu";
+import Chatty from "../screens/chatty";
 import Profile from "../screens/profile";
 
 const Tab = createBottomTabNavigator();
@@ -122,18 +122,18 @@ export default function MyTabs() {
 
       {/* Profile */}
       <Tab.Screen
-        name="Menu"
-        component={Menu}
+        name="Chatty"
+        component={Chatty}
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={{ alignItems: "center" }}>
               <Ionicons
-                name={focused ? "grid" : "grid-outline"}
+                name={focused ? "chatbubbles" : "chatbubbles-outline"}
                 size={24}
                 color={focused ? "#0055FF" : "#777"}
               />
               <Text style={{ color: focused ? "#0055FF" : "#777", fontSize: 9 }} className="font-Quicksandmedium">
-                Menu
+                Chatty
               </Text>
             </View>
           ),
