@@ -140,7 +140,7 @@ const Chatbot = () => {
                       entering={FadeInDown.delay(200)
                         .duration(1000)
                         .springify()}
-                      className="flex-row px-4 mt-5 max-w-[70%]"
+                      className="flex-row px-4 mt-5 max-w-[70%] items-center"
                     >
                       <View className="bg-primarypurple px-4 py-3 rounded-2xl">
                         <Text className="text-white text-base">
