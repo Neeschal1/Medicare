@@ -81,52 +81,56 @@ const Login = () => {
   }));
 
   const handleLogin = async () => {
-    if (!isFormValid) return;
+  if (!isFormValid) return;
 
-    setLoading(true);
-    setEmailError(false);
-    setPasswordError(false);
-    setLoginError(false);
+  setLoading(true);
+  setEmailError(false);
+  setPasswordError(false);
+  setLoginError(false);
 
-    try {
-      const formBody = new URLSearchParams();
-      formBody.append("username", email);
-      formBody.append("password", password);
+  try {
+    const formBody = new URLSearchParams();
+    formBody.append("username", email); // change to "email" if backend expects email
+    formBody.append("password", password);
 
-      const response = await fetch(
-        "https://carezio-backend.onrender.com/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formBody.toString(),
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok && data.access_token) {
-        await AsyncStorage.setItem("userToken", data.access_token);
-
-        navigation.reset({
-          index: 0,
-          routes: [{ name: "HomeDrawer" }],
-        });
-      } else {
-        setEmailError(true);
-        setPasswordError(true);
-        setLoginError(true);
-        setTimeout(() => setLoginError(false), 5000);
+    const response = await fetch(
+      "https://carezio-backend.onrender.com/auth/login",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formBody.toString(),
       }
-    } catch (error) {
-      console.error(error);
+    );
+
+    const data = await response.json();
+
+    console.log("Login Response:", data); // debug
+
+    if (response.ok && data.access_token) {
+      await AsyncStorage.setItem("userToken", data.access_token);
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "HomeDrawer" }],
+      });
+    } else {
       setEmailError(true);
       setPasswordError(true);
       setLoginError(true);
+      console.log("Login failed:", data.detail || data);
       setTimeout(() => setLoginError(false), 5000);
     }
+  } catch (error) {
+    console.error("Login error:", error);
+    setEmailError(true);
+    setPasswordError(true);
+    setLoginError(true);
+    setTimeout(() => setLoginError(false), 5000);
+  }
 
-    setLoading(false);
-  };
+  setLoading(false);
+};
+
 
   return (
     
